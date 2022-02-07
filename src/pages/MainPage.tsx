@@ -40,6 +40,12 @@ const MainLayout = styled.main`
     background-color: blue;
     width: ${Breakpoints.small}px;
   }
+
+  // @Note 아래는 직접 px을 커스텀 할 수 있음
+  ${media.custom(350)} {
+    background-color: green;
+    width: 350px;
+  }
 `;
 
 export default MainPage;

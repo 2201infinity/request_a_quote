@@ -9,6 +9,7 @@ const media = {
   large: mediaQuery(large),
   medium: mediaQuery(medium),
   small: mediaQuery(small),
+  custom: mediaQuery,
 };
 
 export default media;
