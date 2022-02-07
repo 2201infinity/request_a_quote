@@ -1,8 +1,9 @@
-import Header from "components/Header";
-import React, { ReactElement } from "react";
-import styled from "styled-components";
-import Breakpoints from "styles/breakpoints";
-import media from "styles/media";
+import { CardContainer } from 'components/CardContainer';
+import Header from 'components/Header';
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
+import Breakpoints from 'styles/breakpoints';
+import media from 'styles/media';
 
 function MainPage(): ReactElement {
   return (
@@ -11,6 +12,7 @@ function MainPage(): ReactElement {
       <MainLayout>
         {/* 이쪽 부분에 헤더 아래에 들어갈 컴포넌트 넣으면 됌 */}
         main
+        <CardContainer />
       </MainLayout>
     </MainContainer>
   );

@@ -26,7 +26,7 @@ const CheckBox = styled.input`
   display: flex;
   align-items: center;
   /* toggle off */
-  background: #c2c2c2;
+  background: ${({ theme }) => theme.colors.toggleOff2};
   ::after {
     content: '';
     z-index: 10;
@@ -35,7 +35,7 @@ const CheckBox = styled.input`
     height: 20px;
     display: block;
     border-radius: 50%;
-    background: #f5f5f5;
+    background: ${({ theme }) => theme.colors.toggleOff1};
     position: relative;
     transition: all 0.2s ease-in-out;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
@@ -43,7 +43,7 @@ const CheckBox = styled.input`
 
   /* toggle on */
   &:checked {
-    background-color: #bbdefb;
+    background-color: ${({ theme }) => theme.colors.toggleOn2};
     ::after {
       content: '';
       position: relative;
@@ -52,7 +52,7 @@ const CheckBox = styled.input`
       height: 20px;
       left: 20px;
       border-radius: 50%;
-      background: #2196f3;
+      background: ${({ theme }) => theme.colors.toggleOn1};
       transition: all 0.2s ease-in-out;
     }
   }
