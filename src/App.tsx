@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { theme } from "styles/theme";
+import theme from "styles/theme";
 
 function App() {
   return (
@@ -12,5 +12,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;
