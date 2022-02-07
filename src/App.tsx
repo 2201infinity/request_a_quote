@@ -1,11 +1,15 @@
-import React from 'react';
-import GlobalStyles from 'styles/GlobalStyles';
+import React from "react";
+import GlobalStyles from "styles/GlobalStyles";
+import { ThemeProvider } from "styled-components";
+import { theme } from "styles/theme";
 
 function App() {
   return (
-    <div className="App">
-      <GlobalStyles />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <GlobalStyles />
+      </div>
+    </ThemeProvider>
   );
 }
 
