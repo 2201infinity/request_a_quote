@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-interface IProp {
-  onToggle: React.ChangeEventHandler;
+interface IProp extends React.InputHTMLAttributes<HTMLInputElement> {
+  onToggle: (e: React.ChangeEvent<HTMLInputElement>) => void;
   checked: boolean;
 }
 
-export const Toggle = ({ onToggle, checked }: IProp) => {
-  return <CheckBox type="checkbox" onChange={onToggle} checked={checked} />;
+export const Toggle = ({ onToggle, checked, ...rest }: IProp) => {
+  return (
+    <CheckBox type="checkbox" onChange={onToggle} checked={checked} {...rest} />
+  );
 };
 
 const CheckBox = styled.input`

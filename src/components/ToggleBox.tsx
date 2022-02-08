@@ -7,9 +7,11 @@ interface IProp {
   checked: boolean;
 }
 function ToggleBox({ onToggle, checked }: IProp) {
+  console.log("checked", checked);
+
   return (
     <ToggleWrapper>
-      <Toggle onToggle={onToggle} checked={checked} />
+      <Toggle onToggle={onToggle} checked={checked} name="상담중" />
       <AfterToggle>상담 중인 요청만 보기</AfterToggle>
     </ToggleWrapper>
   );

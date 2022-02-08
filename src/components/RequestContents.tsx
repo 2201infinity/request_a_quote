@@ -8,14 +8,8 @@ import NoMatchingResult from "./NoMathcingResult";
 import styled from "styled-components";
 
 function RequestContents(): ReactElement | null {
-  const {
-    onChange,
-    requestList,
-    onReset,
-    selectedFilters,
-    onToggle,
-    isChecked,
-  } = useFilterQuoteRequest();
+  const { onChange, requestList, onReset, selectedFilters } =
+    useFilterQuoteRequest();
 
   return (
     <>
@@ -26,7 +20,10 @@ function RequestContents(): ReactElement | null {
           onReset={onReset}
           selectedFilters={selectedFilters}
         />
-        <ToggleBox onToggle={onToggle} checked={isChecked} />
+        <ToggleBox
+          onToggle={onChange}
+          checked={selectedFilters.includes("상담중")}
+        />
       </FilterBlock>
       {!requestList || requestList.length === 0 ? (
         <NoMatchingResult />
