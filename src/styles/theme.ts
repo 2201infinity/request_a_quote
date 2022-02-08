@@ -9,6 +9,7 @@ const colors = {
   black: "#000000",
   buttonOrange: "#FFA000",
   dateText: "#939FA5",
+  grayText: "#323D45",
   border: "#E5E5E5",
   toggleOn1: "#2196F3",
   toggleOn2: "#BBDEFB",

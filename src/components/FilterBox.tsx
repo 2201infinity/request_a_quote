@@ -1,9 +1,13 @@
-import { ArrowDropDown24Icon, Refresh24Icon } from 'assets';
-import useOutSideClick from 'hooks/useOutSideClick';
-import React, { ReactElement, useState } from 'react';
-import styled from 'styled-components';
-import media from 'styles/media';
-import { REQUEST_MATERIALS, REQUEST_METHODS } from 'utils/constants';
+import {
+  ArrowDropDown24Icon,
+  Refresh24Icon,
+  SelectedArrowDropDown24Icon,
+} from "assets";
+import useOutSideClick from "hooks/useOutSideClick";
+import React, { ReactElement, useState } from "react";
+import styled, { css } from "styled-components";
+import media from "styles/media";
+import { REQUEST_MATERIALS, REQUEST_METHODS } from "utils/constants";
 
 interface FilterBoxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,8 +31,12 @@ function FilterBox({
     return count > 0 ? `(${count})` : null;
   };
 
-  const onOpenFilterMenu = (filter: string) => setIsOpenFilterMenu(filter);
+  const onOpenFilterMenu = (filter: string | null) =>
+    setIsOpenFilterMenu(filter);
   const onCloseFilterMenu = () => setIsOpenFilterMenu(null);
+
+  const isCheckedMenu = (item: "methods" | "materials") =>
+    isOpenFilterMenu === item;
 
   const { targetEl } = useOutSideClick(
     isOpenFilterMenu !== null,
@@ -41,16 +49,23 @@ function FilterBox({
         ref={targetEl}
         onClick={(e) => {
           e.stopPropagation();
-          onOpenFilterMenu('methods');
+          onOpenFilterMenu(isCheckedMenu("methods") ? null : "methods");
         }}
+        isActive={isCheckedMenu("methods")}
       >
-        <span>
+        <LabelText>
           가공방식
           {checkedLength(REQUEST_METHODS)}
-        </span>
-        <ArrowDropDownIcon />
-        {isOpenFilterMenu === 'methods' && (
-          <FilterMenuBox>
+        </LabelText>
+
+        {isCheckedMenu("methods") ? (
+          <SelectedArrowDropDownIcon />
+        ) : (
+          <ArrowDropDownIcon />
+        )}
+
+        {isCheckedMenu("methods") && (
+          <FilterMenuBox onClick={(e) => e.stopPropagation()}>
             {REQUEST_METHODS.map((method) => (
               <MenuItem key={method}>
                 <CheckBoxStyled
@@ -67,18 +82,25 @@ function FilterBox({
       </BoxStyled>
       <BoxStyled
         ref={targetEl}
+        isActive={isCheckedMenu("materials")}
         onClick={(e) => {
           e.stopPropagation();
-          onOpenFilterMenu('materials');
+          onOpenFilterMenu(isCheckedMenu("materials") ? null : "materials");
         }}
       >
-        <span>
+        <LabelText>
           재료
           {checkedLength(REQUEST_MATERIALS)}
-        </span>
-        <ArrowDropDownIcon />
-        {isOpenFilterMenu === 'materials' && (
-          <FilterMenuBox>
+        </LabelText>
+
+        {isCheckedMenu("materials") ? (
+          <SelectedArrowDropDownIcon />
+        ) : (
+          <ArrowDropDownIcon />
+        )}
+
+        {isCheckedMenu("materials") && (
+          <FilterMenuBox onClick={(e) => e.stopPropagation()}>
             {REQUEST_MATERIALS.map((material) => (
               <MenuItem key={material}>
                 <CheckBoxStyled
@@ -112,12 +134,26 @@ const FilterBoxContainer = styled.div`
   }
 `;
 
-const BoxStyled = styled.div`
+const LabelText = styled.span`
+  height: 14px;
+`;
+
+const BoxStyled = styled.div<{ isActive: boolean }>`
   height: 32px;
   border: 1px solid ${({ theme }) => theme.colors.dateText};
   border-radius: 4px;
   padding: 9px 41px 9px 12px;
   display: flex;
+  ${(props) =>
+    props.isActive
+      ? css`
+          background: ${({ theme }) => theme.colors.header};
+          color: ${({ theme }) => theme.colors.white};
+        `
+      : css`
+          background: ${({ theme }) => theme.colors.white};
+          color: ${({ theme }) => theme.colors.grayText};
+        `}
   align-items: center;
   position: relative;
   margin-right: 24px;
@@ -134,11 +170,19 @@ const BoxStyled = styled.div`
   }
 `;
 
-const ArrowDropDownIcon = styled(ArrowDropDown24Icon)`
+const DropDownIconStyled = css`
   position: absolute;
   top: 50%;
   right: 19px;
   transform: translateY(-50%);
+`;
+
+const ArrowDropDownIcon = styled(ArrowDropDown24Icon)`
+  ${DropDownIconStyled}
+`;
+
+const SelectedArrowDropDownIcon = styled(SelectedArrowDropDown24Icon)`
+  ${DropDownIconStyled}
 `;
 
 const ResetButton = styled.button`
@@ -164,10 +208,13 @@ const FilterMenuBox = styled.div`
   top: 36px;
   left: 0;
   background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.grayText};
+  font-weight: 500;
   z-index: 9999;
   border: 1px solid ${({ theme }) => theme.colors.dateText};
   padding: 17px 12px;
   border-radius: 4px;
+  cursor: default;
 `;
 
 const MenuItem = styled.div`
