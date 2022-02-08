@@ -52,7 +52,7 @@ const SidebarContainer = styled.nav<{ visible: boolean }>`
   z-index: 999;
   background: ${(props) => props.theme.colors.white};
   img {
-    height: 15px;
+    height: 12px;
   }
 `;
 
