@@ -93,9 +93,11 @@ function FilterBox({
         )}
       </BoxStyled>
 
-      <ResetButton onClick={onReset}>
-        <Refresh24Icon /> 필터링 리셋
-      </ResetButton>
+      {selectedFilters.length > 0 && (
+        <ResetButton onClick={onReset}>
+          <Refresh24Icon /> 필터링 리셋
+        </ResetButton>
+      )}
     </FilterBoxContainer>
   );
 }
@@ -103,6 +105,7 @@ function FilterBox({
 const FilterBoxContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 32px 0;
 `;
 
 const BoxStyled = styled.div`
