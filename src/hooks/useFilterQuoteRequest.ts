@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { RequestFilterTypes } from "types/request";
-import { getRequests } from "utils/constants/api";
+import { getRequests } from "utils/api";
 import useAsync from "./useAsync";
 
 type ReturnTypes = {
