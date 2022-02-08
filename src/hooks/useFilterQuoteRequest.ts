@@ -3,12 +3,12 @@ import { RequestFilterTypes } from "types/request";
 import { getRequests } from "utils/api";
 import useAsync from "./useAsync";
 
-type ReturnTypes = {
+interface ReturnTypes {
   requestList?: RequestFilterTypes[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   selectedFilters: string[];
-};
+}
 
 export default function useFilterQuoteRequest(): ReturnTypes {
   const [{ data }] = useAsync(getRequests);

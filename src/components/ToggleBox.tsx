@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import media from "styles/media";
-import { Toggle } from "./common/Toggle";
+import { Toggle } from "./Toggle";
 
-interface IProp {
+interface ToggleBoxProps {
   onToggle: React.ChangeEventHandler;
   checked: boolean;
 }
-function ToggleBox({ onToggle, checked }: IProp) {
-  console.log("checked", checked);
-
+function ToggleBox({ onToggle, checked }: ToggleBoxProps) {
   return (
     <ToggleWrapper>
       <Toggle onToggle={onToggle} checked={checked} name="상담중" />
