@@ -1,9 +1,9 @@
-import Header from "components/Header";
-import RequestContents from "components/RequestContents";
-import React, { ReactElement } from "react";
-import styled from "styled-components";
-import Breakpoints from "styles/breakpoints";
-import media from "styles/media";
+import Header from 'components/Header';
+import RequestContents from 'components/RequestContents';
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
+import Breakpoints from 'styles/breakpoints';
+import media from 'styles/media';
 
 function MainPage(): ReactElement {
   return (
@@ -23,7 +23,6 @@ const MainContainer = styled.div`
   overflow: scroll;
 `;
 const MainContentBox = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
 `;
