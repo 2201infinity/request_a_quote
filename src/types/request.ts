@@ -15,3 +15,8 @@ export type State = {
   data?: Request[];
   error?: string;
 };
+
+export type Action =
+  | { type: "LOADING" }
+  | { type: "SUCCESS"; data: Request[] }
+  | { type: "ERROR"; error: any };

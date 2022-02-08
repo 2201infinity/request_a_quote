@@ -1,12 +1,7 @@
 import { useReducer, useEffect } from "react";
-import { Request, State } from "types/request";
+import { State, Action } from "types/request";
 
-type Action =
-  | { type: "LOADING" }
-  | { type: "SUCCESS"; data: Request[] }
-  | { type: "ERROR"; error: any }; //any 수정하기
-
-function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action) {
   switch (action.type) {
     case "LOADING":
       return {
