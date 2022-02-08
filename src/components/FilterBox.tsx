@@ -1,4 +1,5 @@
 import { ArrowDropDown24Icon, Refresh24Icon } from "assets";
+import useOutSideClick from "hooks/useOutSideClick";
 import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
 
@@ -15,6 +16,7 @@ function FilterBox({
 }: FilterBoxProps): ReactElement {
   const methods = ["밀링", "선반"];
   const meterials = ["알루미늄", "탄소강", "구리", "합금강", "강철"];
+  const [isOpenFilterMenu, setIsOpenFilterMenu] = useState<string | null>(null);
 
   const isChecked = (item: string) => selectedFilters.includes(item);
 
@@ -26,45 +28,69 @@ function FilterBox({
     return count;
   };
 
+  const onOpenFilterMenu = (filter: string) => {
+    setIsOpenFilterMenu(filter);
+  };
+
+  const { targetEl } = useOutSideClick(isOpenFilterMenu !== null, () =>
+    setIsOpenFilterMenu(null)
+  );
+
   return (
     <FilterBoxContainer>
-      <BoxStyled>
+      <BoxStyled
+        ref={targetEl}
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenFilterMenu("methods");
+        }}
+      >
         <span>
           가공방식{checkedLength(methods) > 0 && `(${checkedLength(methods)})`}
         </span>
         <ArrowDropDownIcon />
-        <FilterMenuBox>
-          {methods.map((method) => (
-            <MenuItem key={method}>
-              <CheckBoxStyled
-                type="checkbox"
-                name={method}
-                onChange={onChange}
-                checked={isChecked(method)}
-              />
-              <CheckBoxLabel>{method}</CheckBoxLabel>
-            </MenuItem>
-          ))}
-        </FilterMenuBox>
+        {isOpenFilterMenu === "methods" && (
+          <FilterMenuBox>
+            {methods.map((method) => (
+              <MenuItem key={method}>
+                <CheckBoxStyled
+                  type="checkbox"
+                  name={method}
+                  onChange={onChange}
+                  checked={isChecked(method)}
+                />
+                <CheckBoxLabel>{method}</CheckBoxLabel>
+              </MenuItem>
+            ))}
+          </FilterMenuBox>
+        )}
       </BoxStyled>
-      <BoxStyled>
+      <BoxStyled
+        ref={targetEl}
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenFilterMenu("meterials");
+        }}
+      >
         <span>
           재료{checkedLength(meterials) > 0 && `(${checkedLength(meterials)})`}
         </span>
         <ArrowDropDownIcon />
-        <FilterMenuBox>
-          {meterials.map((material) => (
-            <MenuItem key={material}>
-              <CheckBoxStyled
-                type="checkbox"
-                name={material}
-                onChange={onChange}
-                checked={isChecked(material)}
-              />
-              <CheckBoxLabel>{material}</CheckBoxLabel>
-            </MenuItem>
-          ))}
-        </FilterMenuBox>
+        {isOpenFilterMenu === "meterials" && (
+          <FilterMenuBox>
+            {meterials.map((material) => (
+              <MenuItem key={material}>
+                <CheckBoxStyled
+                  type="checkbox"
+                  name={material}
+                  onChange={onChange}
+                  checked={isChecked(material)}
+                />
+                <CheckBoxLabel>{material}</CheckBoxLabel>
+              </MenuItem>
+            ))}
+          </FilterMenuBox>
+        )}
       </BoxStyled>
 
       <ResetButton onClick={onReset}>
