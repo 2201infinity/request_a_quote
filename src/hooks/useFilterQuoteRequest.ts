@@ -11,8 +11,7 @@ type ReturnTypes = {
 };
 
 export default function useFilterQuoteRequest(): ReturnTypes {
-  const [state] = useAsync(getRequests);
-  const { data } = state;
+  const [{ data }] = useAsync(getRequests);
 
   const originalData = useRef<RequestFilterTypes[]>();
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
