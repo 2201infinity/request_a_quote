@@ -1,9 +1,9 @@
-import { ArrowDropDown24Icon, Refresh24Icon } from "assets";
-import useOutSideClick from "hooks/useOutSideClick";
-import React, { ReactElement, useState } from "react";
-import styled from "styled-components";
-import media from "styles/media";
-import { REQUEST_MATERIALS, REQUEST_METHODS } from "utils/constants";
+import { ArrowDropDown24Icon, Refresh24Icon } from 'assets';
+import useOutSideClick from 'hooks/useOutSideClick';
+import React, { ReactElement, useState } from 'react';
+import styled from 'styled-components';
+import media from 'styles/media';
+import { REQUEST_MATERIALS, REQUEST_METHODS } from 'utils/constants';
 
 interface FilterBoxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -41,7 +41,7 @@ function FilterBox({
         ref={targetEl}
         onClick={(e) => {
           e.stopPropagation();
-          onOpenFilterMenu("methods");
+          onOpenFilterMenu('methods');
         }}
       >
         <span>
@@ -49,7 +49,7 @@ function FilterBox({
           {checkedLength(REQUEST_METHODS)}
         </span>
         <ArrowDropDownIcon />
-        {isOpenFilterMenu === "methods" && (
+        {isOpenFilterMenu === 'methods' && (
           <FilterMenuBox>
             {REQUEST_METHODS.map((method) => (
               <MenuItem key={method}>
@@ -69,7 +69,7 @@ function FilterBox({
         ref={targetEl}
         onClick={(e) => {
           e.stopPropagation();
-          onOpenFilterMenu("materials");
+          onOpenFilterMenu('materials');
         }}
       >
         <span>
@@ -77,7 +77,7 @@ function FilterBox({
           {checkedLength(REQUEST_MATERIALS)}
         </span>
         <ArrowDropDownIcon />
-        {isOpenFilterMenu === "materials" && (
+        {isOpenFilterMenu === 'materials' && (
           <FilterMenuBox>
             {REQUEST_MATERIALS.map((material) => (
               <MenuItem key={material}>
@@ -129,6 +129,9 @@ const BoxStyled = styled.div`
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.primary};
   }
+  ${media.medium} {
+    margin-right: 12px;
+  }
 `;
 
 const ArrowDropDownIcon = styled(ArrowDropDown24Icon)`
@@ -149,6 +152,9 @@ const ResetButton = styled.button`
   align-items: center;
   svg {
     margin-right: 12px;
+    ${media.medium} {
+      margin-right: 6px;
+    }
   }
 `;
 
