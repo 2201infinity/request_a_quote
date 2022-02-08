@@ -29,7 +29,9 @@ function FilterBox({
   return (
     <FilterBoxContainer>
       <BoxStyled>
-        <span>가공방식({checkedLength(methods)})</span>
+        <span>
+          가공방식{checkedLength(methods) > 0 && `(${checkedLength(methods)})`}
+        </span>
         <ArrowDropDownIcon />
         <FilterMenuBox>
           {methods.map((method) => (
@@ -46,7 +48,9 @@ function FilterBox({
         </FilterMenuBox>
       </BoxStyled>
       <BoxStyled>
-        <span>재료({checkedLength(meterials)})</span>
+        <span>
+          재료{checkedLength(meterials) > 0 && `(${checkedLength(meterials)})`}
+        </span>
         <ArrowDropDownIcon />
         <FilterMenuBox>
           {meterials.map((material) => (
