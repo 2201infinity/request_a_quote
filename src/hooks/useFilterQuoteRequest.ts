@@ -6,10 +6,11 @@ import useAsync from "./useAsync";
 type ReturnTypes = {
   requestList?: RequestFilterTypes[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onReset: () => void;
 };
 
 export default function useFilterQuoteRequest(): ReturnTypes {
-  const [state, refetch] = useAsync(getRequests);
+  const [state] = useAsync(getRequests);
   const { data } = state;
 
   const originalData = useRef<RequestFilterTypes[]>();
@@ -40,8 +41,15 @@ export default function useFilterQuoteRequest(): ReturnTypes {
     );
   };
 
+  const onReset = () => {
+    if (!originalData.current) return;
+    setSelectedFilters([]);
+    setRequestList(originalData.current);
+  };
+
   return {
     requestList,
     onChange,
+    onReset,
   };
 }

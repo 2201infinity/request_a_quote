@@ -1,12 +1,11 @@
 import React, { ReactElement } from "react";
-import { RequestFilterTypes } from "types/request";
 
 type FilterBoxProps = {
-  requestList: RequestFilterTypes[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onReset: () => void;
 };
 
-function FilterBox({ onChange, requestList }: FilterBoxProps): ReactElement {
+function FilterBox({ onChange, onReset }: FilterBoxProps): ReactElement {
   return (
     <div>
       <div>
@@ -53,6 +52,10 @@ function FilterBox({ onChange, requestList }: FilterBoxProps): ReactElement {
       <div>
         <input type="checkbox" value="강철" name="강철" onChange={onChange} />
         <label htmlFor="">강철</label>
+      </div>
+
+      <div>
+        <button onClick={onReset}>필터링 리셋</button>
       </div>
     </div>
   );
