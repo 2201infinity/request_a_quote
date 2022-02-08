@@ -165,6 +165,9 @@ const BoxStyled = styled.div<{ isActive: boolean }>`
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.primary};
   }
+  ${media.medium} {
+    margin-right: 12px;
+  }
 `;
 
 const DropDownIconStyled = css`
@@ -193,6 +196,9 @@ const ResetButton = styled.button`
   align-items: center;
   svg {
     margin-right: 12px;
+    ${media.medium} {
+      margin-right: 6px;
+    }
   }
 `;
 
