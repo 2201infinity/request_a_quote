@@ -1,21 +1,13 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import styled from "styled-components";
 
-export const ToggleButton = ({ ...rest }) => {
-  const [isChecked, setIsChecked] = useState(false);
+interface IProp {
+  onToggle: React.ChangeEventHandler;
+  checked: boolean;
+}
 
-  const onToggle = () => {
-    setIsChecked(!isChecked);
-  };
-
-  return (
-    <CheckBox
-      {...rest}
-      type="checkbox"
-      onChange={onToggle}
-      checked={isChecked}
-    />
-  );
+export const ToggleButton = ({ onToggle, checked }: IProp) => {
+  return <CheckBox type="checkbox" onChange={onToggle} checked={checked} />;
 };
 
 const CheckBox = styled.input`
@@ -28,7 +20,7 @@ const CheckBox = styled.input`
   /* toggle off */
   background: ${({ theme }) => theme.colors.toggleOff2};
   ::after {
-    content: '';
+    content: "";
     z-index: 10;
     left: 0;
     width: 20px;
@@ -45,7 +37,7 @@ const CheckBox = styled.input`
   &:checked {
     background-color: ${({ theme }) => theme.colors.toggleOn2};
     ::after {
-      content: '';
+      content: "";
       position: relative;
       display: block;
       width: 20px;
