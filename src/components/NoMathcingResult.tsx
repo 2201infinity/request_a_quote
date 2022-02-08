@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 function NoMatchingResult() {
   return (
@@ -17,7 +17,6 @@ const ResultWrapper = styled.div`
 `;
 
 const NothingMatch = styled.div`
-  width: 1130px;
   height: 100px;
   display: flex;
   justify-content: center;
