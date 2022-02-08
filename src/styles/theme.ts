@@ -20,6 +20,7 @@ const fontSize = {
   title: 20,
   subTitle: 16,
   text: 14,
+  smallText: 12,
 };
 
 export type ColorsTypes = typeof colors;

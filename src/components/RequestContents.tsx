@@ -3,6 +3,7 @@ import React, { ReactElement } from "react";
 import { CardContainer } from "./CardContainer";
 import ToggleBox from "./ToggleBox";
 import FilterBox from "./FilterBox";
+import RequestTitle from "./RequestTitle";
 import NoMatchingResult from "./NoMathcingResult";
 
 function RequestContents(): ReactElement | null {
@@ -17,7 +18,7 @@ function RequestContents(): ReactElement | null {
 
   return (
     <>
-      {console.log(requestList)}
+      <RequestTitle />
       <FilterBox
         onChange={onChange}
         onReset={onReset}
