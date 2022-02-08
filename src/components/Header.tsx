@@ -62,6 +62,7 @@ const HeaderContainer = styled.header`
   ${media.medium} {
     justify-content: flex-start;
     height: 44px;
+    padding: 23px;
   }
 `;
 
