@@ -7,12 +7,14 @@ import media from "styles/media";
 
 function MainPage(): ReactElement {
   return (
-    <MainContainer>
+    <>
       <Header />
-      <MainLayout>
-        <RequestContents />
-      </MainLayout>
-    </MainContainer>
+      <MainContainer>
+        <MainLayout>
+          <RequestContents />
+        </MainLayout>
+      </MainContainer>
+    </>
   );
 }
 
