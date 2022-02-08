@@ -14,16 +14,26 @@ function FilterBox({
   const methods = ["밀링", "선반"];
   const meterials = ["알루미늄", "탄소강", "구리", "합금강", "강철"];
 
+  const isChecked = (item: string) => selectedFilters.includes(item);
+
+  const checkedLength = (arr: string[]) => {
+    let count = 0;
+    arr.forEach((item) => {
+      if (isChecked(item)) count++;
+    });
+    return count;
+  };
+
   return (
     <div>
-      <span>가공방식: </span>
+      <span>가공방식: {checkedLength(methods)}</span>
       {methods.map((method) => (
         <div>
           <input
             type="checkbox"
             name={method}
             onChange={onChange}
-            checked={selectedFilters.includes(method)}
+            checked={isChecked(method)}
           />
           <label>{method}</label>
         </div>
@@ -31,14 +41,14 @@ function FilterBox({
 
       <br />
 
-      <span>재료: </span>
+      <span>재료: {checkedLength(meterials)}</span>
       {meterials.map((material) => (
         <div>
           <input
             type="checkbox"
             name={material}
             onChange={onChange}
-            checked={selectedFilters.includes(material)}
+            checked={isChecked(material)}
           />
           <label htmlFor="">{material}</label>
         </div>
