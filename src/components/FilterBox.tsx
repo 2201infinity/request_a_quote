@@ -28,12 +28,12 @@ function FilterBox({
     return count;
   };
 
-  const onOpenFilterMenu = (filter: string) => {
-    setIsOpenFilterMenu(filter);
-  };
+  const onOpenFilterMenu = (filter: string) => setIsOpenFilterMenu(filter);
+  const onCloseFilterMenu = () => setIsOpenFilterMenu(null);
 
-  const { targetEl } = useOutSideClick(isOpenFilterMenu !== null, () =>
-    setIsOpenFilterMenu(null)
+  const { targetEl } = useOutSideClick(
+    isOpenFilterMenu !== null,
+    onCloseFilterMenu
   );
 
   return (
@@ -169,6 +169,7 @@ const CheckBoxStyled = styled.input`
   width: 18px;
   height: 18px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 const CheckBoxLabel = styled.label`
