@@ -31,15 +31,15 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border-radius: 4px;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.text}px;
   box-sizing: border-box;
   transition: 0.15s ease-in-out;
   ${({ variant }) => {
     switch (variant) {
       case 'primary':
         return css`
-          background-color: #2196f3;
-          color: white;
+          background-color: ${({ theme }) => theme.colors.primary};
+          color: ${({ theme }) => theme.colors.white};
           border: none;
           &:hover {
             background-color: #0b5ed7;
@@ -47,14 +47,17 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
         `;
       case 'secondary':
         return css`
-          background-color: white;
-          color: #2196f3;
-          border: 1px solid #2196f3;
+          background-color: ${({ theme }) => theme.colors.white};
+          color: ${({ theme }) => theme.colors.primary};
+          border: 1px solid ${({ theme }) => theme.colors.primary};
           &:hover {
-            background-color: #2196f3;
-            color: white;
+            background-color: ${({ theme }) => theme.colors.primary};
+            color: ${({ theme }) => theme.colors.white};
           }
         `;
     }
   }};
+  &:first-of-type {
+    margin-right: 8px;
+  }
 `;

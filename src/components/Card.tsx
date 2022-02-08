@@ -1,0 +1,104 @@
+import styled from 'styled-components';
+import { Button } from './common/Button';
+import media from 'styles/media';
+import { IQuotation } from 'types/quotation';
+
+export const Card = ({
+  title,
+  client,
+  due,
+  count,
+  amount,
+  method,
+  material,
+  status,
+}: IQuotation) => {
+  return (
+    <Container>
+      <Title>{title}</Title>
+      <Span>{client}</Span>
+      <Span>{due}까지 납기</Span>
+      <Line></Line>
+      <Span>
+        도면 개수<Strong>{count}개</Strong>
+      </Span>
+      <Span>
+        총 수량<Strong>{amount}개</Strong>
+      </Span>
+      <Span>
+        가공 방식<Strong>{method}</Strong>
+      </Span>
+      <Span>
+        재료<Strong>{material}</Strong>
+      </Span>
+      <div>
+        <Button variant="primary">요청 내역 보기</Button>
+        <Button variant="secondary" width="76px">
+          채팅하기
+        </Button>
+      </div>
+      {status === '상담중' && <Badge>{status}</Badge>}
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.primary} inset;
+  }
+`;
+
+const Title = styled.h4`
+  font-weight: bold;
+`;
+
+const Span = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.text}px;
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  &:first-of-type {
+    margin-bottom: 24px;
+  }
+  &:nth-of-type(2) {
+    color: ${({ theme }) => theme.colors.dateText};
+    margin: 0 0 16px 0;
+  }
+  &:last-of-type {
+    margin-bottom: 32px;
+  }
+`;
+
+const Strong = styled.strong`
+  font-weight: bold;
+  width: 232px;
+  ${media.small} {
+    width: 192px;
+  }
+`;
+
+const Line = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  margin-bottom: 32px;
+`;
+
+const Badge = styled.div`
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.buttonOrange};
+  box-sizing: border-box;
+  border-radius: 12px;
+  color: ${({ theme }) => theme.colors.buttonOrange};
+  font-size: 12px;
+  padding: 2px 8px;
+`;
