@@ -8,14 +8,16 @@ type ReturnTypes = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   selectedFilters: string[];
+  onToggle: () => void;
+  isChecked: boolean;
 };
 
 export default function useFilterQuoteRequest(): ReturnTypes {
   const [{ data }] = useAsync(getRequests);
-
   const originalData = useRef<RequestFilterTypes[]>();
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [requestList, setRequestList] = useState<RequestFilterTypes[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     if (!data) return;
@@ -41,6 +43,21 @@ export default function useFilterQuoteRequest(): ReturnTypes {
     );
   };
 
+  const onToggle = () => {
+    if (!originalData.current) return;
+    if (!isChecked) {
+      setIsChecked(true);
+      setRequestList(requestList.filter((item) => item.status === "상담중"));
+      return;
+    }
+    setIsChecked(false);
+    setRequestList(
+      originalData.current.filter((request) =>
+        selectedFilters.every((item: string) => request.filters.includes(item))
+      )
+    );
+  };
+
   const onReset = () => {
     if (!originalData.current) return;
     setSelectedFilters([]);
@@ -52,5 +69,7 @@ export default function useFilterQuoteRequest(): ReturnTypes {
     onChange,
     onReset,
     selectedFilters,
+    onToggle,
+    isChecked,
   };
 }
