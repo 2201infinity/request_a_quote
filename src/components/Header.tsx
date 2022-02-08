@@ -17,8 +17,6 @@ function Header({ companyName = "A 가공 업체" }: HeaderProps): ReactElement 
   const { innerWidth } = useWindowWidth();
   const isMobile = innerWidth < Breakpoints.medium;
 
-  console.log(isMobile);
-
   const onHandleSidebar = () => {
     setMenuShowing((prev) => !prev);
   };

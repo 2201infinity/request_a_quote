@@ -7,18 +7,22 @@ import media from "styles/media";
 
 function MainPage(): ReactElement {
   return (
-    <>
+    <MainContainer>
       <Header />
-      <MainContainer>
+      <MainContentBox>
         <MainLayout>
           <RequestContents />
         </MainLayout>
-      </MainContainer>
-    </>
+      </MainContentBox>
+    </MainContainer>
   );
 }
 
 const MainContainer = styled.div`
+  height: 100vh;
+  overflow: scroll;
+`;
+const MainContentBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;

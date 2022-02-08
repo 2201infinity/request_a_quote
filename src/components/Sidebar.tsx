@@ -37,7 +37,8 @@ const SidebarContainer = styled.nav<{ visible: boolean }>`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 50vw;
+  width: 75vw;
+  font-size: 14px;
   ${(props) =>
     props.visible
       ? css`
@@ -58,7 +59,7 @@ const SidebarContainer = styled.nav<{ visible: boolean }>`
 const LogoBox = styled.div`
   display: flex;
   align-items: center;
-  width: 50vw;
+  width: 100%;
   height: 44px;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
   margin-bottom: 6px;
@@ -88,6 +89,7 @@ const Background = styled.div<{ visible: boolean }>`
         `}
   width: 100%;
   height: 100%;
+  z-index: 100;
   background-color: ${({ theme }) => theme.colors.black};
   position: absolute;
   left: 0;
