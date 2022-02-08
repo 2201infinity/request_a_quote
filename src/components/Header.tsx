@@ -1,17 +1,21 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
-import logo from "assets/logo.png";
-import company from "assets/company.png";
-import menu from "assets/menu.png";
+import { Logo } from "assets/images";
+import { CompanyIcon } from "assets/images";
+import { MenuIcon } from "assets/images";
 import media from "styles/media";
 
 function Header(): ReactElement {
+  const onHandleSidebar = (event: React.MouseEvent<HTMLButtonElement>) => {};
+
   return (
     <HeaderContainer>
-      <Hamburger src={menu} alt="menu-button" />
-      <Logo src={logo} alt="logo" />
+      <Hamburger onClick={onHandleSidebar}>
+        <img src={MenuIcon} alt="menu-button" />
+      </Hamburger>
+      <LogoIcon src={Logo} alt="logo" />
       <ProfileBox>
-        <img src={company} alt="company" />
+        <img src={CompanyIcon} alt="company" />
         <NameText>A 가공 업체</NameText>
         <div>
           <p>로그아웃</p>
@@ -41,17 +45,21 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Hamburger = styled.img`
+const Hamburger = styled.button`
   display: none;
-  height: 12px;
   margin-right: 19px;
+  padding: 0;
+
+  img {
+    height: 12px;
+  }
 
   ${media.medium} {
     display: block;
   }
 `;
 
-const Logo = styled.img`
+const LogoIcon = styled.img`
   height: 20px;
 
   ${media.medium} {
