@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Button } from "./Button";
-import media from "styles/media";
-import { Request } from "types/request";
+import styled from 'styled-components';
+import { Button } from './Button';
+import media from 'styles/media';
+import { Request } from 'types/request';
 
 export const Card = ({ data }: { data: Request }) => {
   const { amount, client, count, due, material, method, status, title } = data;
@@ -18,10 +18,10 @@ export const Card = ({ data }: { data: Request }) => {
         총 수량<Strong>{amount}개</Strong>
       </Span>
       <Span>
-        가공 방식<Strong>{method.join(", ")}</Strong>
+        가공 방식<Strong>{method.join(', ')}</Strong>
       </Span>
       <Span>
-        재료<Strong>{material.join(", ")}</Strong>
+        재료<Strong>{material.join(', ')}</Strong>
       </Span>
       <div>
         <Button variant="primary">요청 내역 보기</Button>
@@ -29,7 +29,7 @@ export const Card = ({ data }: { data: Request }) => {
           채팅하기
         </Button>
       </div>
-      {status === "상담중" && <Badge>{status}</Badge>}
+      {status === '상담중' && <Badge>{status}</Badge>}
     </Container>
   );
 };
@@ -73,7 +73,7 @@ const Span = styled.span`
 const Strong = styled.strong`
   font-weight: bold;
   width: 232px;
-  ${media.small} {
+  ${media.medium} {
     width: 192px;
   }
 `;
