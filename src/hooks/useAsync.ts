@@ -1,5 +1,6 @@
-import { useReducer, useEffect } from "react";
-import { State, Action } from "types/request";
+import { AxiosError } from "axios";
+import { useReducer, useEffect, useCallback } from "react";
+import { State, Action, UseAsyncReturnType } from "types/request";
 
 function reducer(state: State, action: Action) {
   switch (action.type) {
@@ -22,24 +23,25 @@ function reducer(state: State, action: Action) {
   }
 }
 
-function useAsync(callback: any, deps = []) {
+function useAsync(callback: Function): UseAsyncReturnType {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
   });
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     dispatch({ type: "LOADING" });
     try {
       const data = await callback();
       dispatch({ type: "SUCCESS", data });
     } catch (e) {
-      dispatch({ type: "ERROR", error: e });
+      const err = e as AxiosError;
+      dispatch({ type: "ERROR", error: err });
     }
-  };
+  }, [callback]);
 
   useEffect(() => {
     fetchData();
-  }, deps);
+  }, [fetchData]);
 
   return [state, fetchData];
 }

@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 export type Request = {
   id: number;
   title: string;
@@ -13,10 +15,12 @@ export type Request = {
 export type State = {
   loading: boolean;
   data?: Request[];
-  error?: string;
+  error?: AxiosError;
 };
 
 export type Action =
   | { type: "LOADING" }
   | { type: "SUCCESS"; data: Request[] }
-  | { type: "ERROR"; error: any };
+  | { type: "ERROR"; error: AxiosError };
+
+export type UseAsyncReturnType = [State, () => Promise<void>];
