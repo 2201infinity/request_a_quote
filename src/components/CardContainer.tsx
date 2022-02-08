@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { Card } from "./Card";
-import Breakpoints from "styles/breakpoints";
-import media from "styles/media";
-import { RequestFilterTypes } from "types/request";
+import styled from 'styled-components';
+import { Card } from './Card';
+import media from 'styles/media';
+import { RequestFilterTypes } from 'types/request';
 
 type CardContainerProps = {
   requestList: RequestFilterTypes[];
@@ -31,8 +30,8 @@ export const CardContainer = ({ requestList }: CardContainerProps) => {
             due={due}
             count={count}
             amount={amount}
-            method={method.join(", ")}
-            material={material.join(", ")}
+            method={method.join(', ')}
+            material={material.join(', ')}
             status={status}
           />
         );
@@ -44,21 +43,14 @@ export const CardContainer = ({ requestList }: CardContainerProps) => {
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: ${Breakpoints.large}px;
   margin: 0 auto;
   gap: 16px;
 
   ${media.large} {
-    width: ${Breakpoints.medium}px;
     grid-template-columns: repeat(2, 1fr);
   }
 
   ${media.medium} {
-    width: ${Breakpoints.small}px;
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  ${media.small} {
-    width: 320px;
   }
 `;

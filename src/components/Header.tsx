@@ -1,18 +1,18 @@
-import React, { useState, ReactElement } from "react";
-import styled from "styled-components";
-import { Logo } from "assets/images";
-import { CompanyIcon } from "assets/images";
-import { MenuIcon } from "assets/images";
-import media from "styles/media";
-import Sidebar from "components/Sidebar";
-import Breakpoints from "styles/breakpoints";
-import useWindowWidth from "hooks/useWindowWidth";
+import React, { useState, ReactElement } from 'react';
+import styled from 'styled-components';
+import { Logo } from 'assets/images';
+import { CompanyIcon } from 'assets/images';
+import { MenuIcon } from 'assets/images';
+import media from 'styles/media';
+import Sidebar from 'components/Sidebar';
+import Breakpoints from 'styles/breakpoints';
+import useWindowWidth from 'hooks/useWindowWidth';
 
 interface HeaderProps {
   companyName?: string;
 }
 
-function Header({ companyName = "A 가공 업체" }: HeaderProps): ReactElement {
+function Header({ companyName = 'A 가공 업체' }: HeaderProps): ReactElement {
   const [isMenuShowing, setMenuShowing] = useState<boolean>(false);
   const { innerWidth } = useWindowWidth();
   const isMobile = innerWidth < Breakpoints.medium;
@@ -50,7 +50,6 @@ const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
   height: 70px;
   padding: 0 40px;
   color: ${(props) => props.theme.colors.white};
