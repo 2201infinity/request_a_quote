@@ -1,13 +1,21 @@
 import useFilterQuoteRequest from "hooks/useFilterQuoteRequest";
 import React, { ReactElement } from "react";
 import { CardContainer } from "./CardContainer";
+import ToggleBox from "./ToggleBox";
 import FilterBox from "./FilterBox";
+import NoMatchingResult from "./NoMathcingResult";
 
 function RequestContents(): ReactElement | null {
-  const { onChange, requestList, onReset, selectedFilters } =
-    useFilterQuoteRequest();
+  const {
+    onChange,
+    requestList,
+    onReset,
+    selectedFilters,
+    onToggle,
+    isChecked,
+  } = useFilterQuoteRequest();
 
-  if (!requestList) return <div>sd</div>;
+  if (!requestList) return <NoMatchingResult />;
 
   return (
     <>
@@ -16,6 +24,7 @@ function RequestContents(): ReactElement | null {
         onReset={onReset}
         selectedFilters={selectedFilters}
       />
+      <ToggleBox onToggle={onToggle} checked={isChecked} />
       <CardContainer requestList={requestList} />
     </>
   );

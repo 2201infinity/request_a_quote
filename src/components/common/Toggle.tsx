@@ -5,7 +5,7 @@ interface IProp {
   checked: boolean;
 }
 
-export const ToggleButton = ({ onToggle, checked }: IProp) => {
+export const Toggle = ({ onToggle, checked }: IProp) => {
   return <CheckBox type="checkbox" onChange={onToggle} checked={checked} />;
 };
 

@@ -9,6 +9,7 @@ type ReturnTypes = {
   onReset: () => void;
   selectedFilters: string[];
   onToggle: () => void;
+  isChecked: boolean;
 };
 
 export default function useFilterQuoteRequest(): ReturnTypes {
@@ -34,6 +35,8 @@ export default function useFilterQuoteRequest(): ReturnTypes {
       ? selectedFilters.filter((filter) => filter !== name)
       : [...selectedFilters, name];
     setSelectedFilters(selectedFilterList);
+    console.log(selectedFilters);
+    // console.log(selectedFilterList);
 
     setRequestList(
       originalData.current.filter((request) =>
@@ -43,7 +46,18 @@ export default function useFilterQuoteRequest(): ReturnTypes {
   };
 
   const onToggle = () => {
-    setIsChecked(!isChecked);
+    if (!originalData.current) return;
+    if (!isChecked) {
+      setIsChecked(true);
+      setRequestList(requestList.filter((item) => item.status === "상담중"));
+      return;
+    }
+    setIsChecked(false);
+    setRequestList(
+      originalData.current.filter((request) =>
+        selectedFilters.every((item: string) => request.filters.includes(item))
+      )
+    );
   };
 
   const onReset = () => {
