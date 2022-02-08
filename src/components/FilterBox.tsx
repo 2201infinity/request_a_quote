@@ -28,7 +28,7 @@ function FilterBox({
     <div>
       <span>가공방식: {checkedLength(methods)}</span>
       {methods.map((method) => (
-        <div>
+        <div key={method}>
           <input
             type="checkbox"
             name={method}
@@ -43,7 +43,7 @@ function FilterBox({
 
       <span>재료: {checkedLength(meterials)}</span>
       {meterials.map((material) => (
-        <div>
+        <div key={material}>
           <input
             type="checkbox"
             name={material}
