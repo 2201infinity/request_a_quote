@@ -8,6 +8,7 @@ function Header(): ReactElement {
 const HeaderContainer = styled.header`
   width: 100%;
   height: 70px;
+  min-height: 70px;
   background-color: #1565c0;
 `;
 
