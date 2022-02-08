@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { RequestFilterTypes } from "types/request";
 import { getRequests } from "utils/constants/api";
 import useAsync from "./useAsync";
 
-export default function useFilterQuoteRequest() {
+type ReturnTypes = {
+  requestList?: RequestFilterTypes[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function useFilterQuoteRequest(): ReturnTypes {
   const [state, refetch] = useAsync(getRequests);
-  const { data, loading, error } = state;
+  const { data } = state;
 
-  const originalData = data?.map((request) => ({
-    ...request,
-    filters: [...request.method, ...request.material],
-  }));
-
+  const originalData = useRef<RequestFilterTypes[]>();
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [requestList, setRequestList] = useState(
-    data?.map((request) => ({
+  const [requestList, setRequestList] = useState<RequestFilterTypes[]>([]);
+
+  useEffect(() => {
+    if (!data) return;
+    originalData.current = data.map((request) => ({
       ...request,
       filters: [...request.method, ...request.material],
-    }))
-  );
+    }));
+    setRequestList(originalData.current);
+  }, [data]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!originalData) return;
+    if (!originalData.current) return;
     const { name } = e.target;
     const selectedFilterList = selectedFilters.includes(name)
       ? selectedFilters.filter((filter) => filter !== name)
@@ -28,7 +34,7 @@ export default function useFilterQuoteRequest() {
     setSelectedFilters(selectedFilterList);
 
     setRequestList(
-      originalData.filter((request) =>
+      originalData.current.filter((request) =>
         selectedFilterList.every((item) => request.filters.includes(item))
       )
     );

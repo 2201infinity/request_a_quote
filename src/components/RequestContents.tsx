@@ -3,14 +3,15 @@ import React, { ReactElement } from "react";
 import { CardContainer } from "./CardContainer";
 import FilterBox from "./FilterBox";
 
-function RequestContents(): ReactElement {
-  useFilterQuoteRequest();
+function RequestContents(): ReactElement | null {
+  const { onChange, requestList } = useFilterQuoteRequest();
+
+  if (!requestList) return <div>sd</div>;
 
   return (
     <>
-      <FilterBox />
-      <CardContainer />
-      Quotation request.
+      <FilterBox requestList={requestList} onChange={onChange} />
+      <CardContainer requestList={requestList} />
     </>
   );
 }

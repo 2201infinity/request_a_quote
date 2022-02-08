@@ -1,13 +1,12 @@
-import useFilterQuoteRequest from "hooks/useFilterQuoteRequest";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
+import { RequestFilterTypes } from "types/request";
 
-function FilterBox(): ReactElement {
-  const { requestList, onChange } = useFilterQuoteRequest();
+type FilterBoxProps = {
+  requestList: RequestFilterTypes[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-  useEffect(() => {
-    console.log("requestList", requestList);
-  }, [requestList]);
-
+function FilterBox({ onChange, requestList }: FilterBoxProps): ReactElement {
   return (
     <div>
       <div>
