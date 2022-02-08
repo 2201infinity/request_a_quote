@@ -1,18 +1,10 @@
-import styled from 'styled-components';
-import { Button } from './common/Button';
-import media from 'styles/media';
-import { IQuotation } from 'types/quotation';
+import styled from "styled-components";
+import { Button } from "./Button";
+import media from "styles/media";
+import { Request } from "types/request";
 
-export const Card = ({
-  title,
-  client,
-  due,
-  count,
-  amount,
-  method,
-  material,
-  status,
-}: IQuotation) => {
+export const Card = ({ data }: { data: Request }) => {
+  const { amount, client, count, due, material, method, status, title } = data;
   return (
     <Container>
       <Title>{title}</Title>
@@ -26,10 +18,10 @@ export const Card = ({
         총 수량<Strong>{amount}개</Strong>
       </Span>
       <Span>
-        가공 방식<Strong>{method}</Strong>
+        가공 방식<Strong>{method.join(", ")}</Strong>
       </Span>
       <Span>
-        재료<Strong>{material}</Strong>
+        재료<Strong>{material.join(", ")}</Strong>
       </Span>
       <div>
         <Button variant="primary">요청 내역 보기</Button>
@@ -37,7 +29,7 @@ export const Card = ({
           채팅하기
         </Button>
       </div>
-      {status === '상담중' && <Badge>{status}</Badge>}
+      {status === "상담중" && <Badge>{status}</Badge>}
     </Container>
   );
 };

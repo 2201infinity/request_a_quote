@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 
-export type Request = {
+export interface Request {
   id: number;
   title: string;
   client: string;
@@ -10,17 +10,17 @@ export type Request = {
   method: string[];
   material: string[];
   status: string;
-};
+}
 
-export type RequestFilterTypes = {
+export interface RequestFilterTypes extends Request {
   filters: string[];
-} & Request;
+}
 
-export type State = {
+export interface State {
   loading: boolean;
   data?: Request[];
   error?: AxiosError;
-};
+}
 
 export type Action =
   | { type: "LOADING" }

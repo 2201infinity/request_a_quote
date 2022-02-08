@@ -4,11 +4,11 @@ import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
 import media from "styles/media";
 
-type FilterBoxProps = {
+interface FilterBoxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   selectedFilters: string[];
-};
+}
 
 function FilterBox({
   onChange,
