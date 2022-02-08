@@ -54,7 +54,6 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   width: 100vw;
   height: 70px;
-  min-height: 70px;
   padding: 0 40px;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.header};
