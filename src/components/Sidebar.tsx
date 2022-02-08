@@ -3,10 +3,10 @@ import styled, { css } from "styled-components";
 import { MobileLogo } from "assets/images";
 import { MobileCompanyIcon } from "assets/images";
 
-type SidebarProps = {
+interface SidebarProps {
   onHandleSidebar: () => void;
   isMenuShowing: boolean;
-};
+}
 
 function Sidebar({
   onHandleSidebar,

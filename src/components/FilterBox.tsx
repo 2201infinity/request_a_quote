@@ -3,30 +3,28 @@ import useOutSideClick from "hooks/useOutSideClick";
 import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
 import media from "styles/media";
+import { REQUEST_MATERIALS, REQUEST_METHODS } from "utils/constants";
 
-type FilterBoxProps = {
+interface FilterBoxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   selectedFilters: string[];
-};
+}
 
 function FilterBox({
   onChange,
   onReset,
   selectedFilters,
 }: FilterBoxProps): ReactElement {
-  const methods = ["밀링", "선반"];
-  const meterials = ["알루미늄", "탄소강", "구리", "합금강", "강철"];
   const [isOpenFilterMenu, setIsOpenFilterMenu] = useState<string | null>(null);
 
   const isChecked = (item: string) => selectedFilters.includes(item);
-
   const checkedLength = (arr: string[]) => {
     let count = 0;
     arr.forEach((item) => {
       if (isChecked(item)) count++;
     });
-    return count;
+    return count > 0 ? `(${count})` : null;
   };
 
   const onOpenFilterMenu = (filter: string) => setIsOpenFilterMenu(filter);
@@ -47,12 +45,13 @@ function FilterBox({
         }}
       >
         <span>
-          가공방식{checkedLength(methods) > 0 && `(${checkedLength(methods)})`}
+          가공방식
+          {checkedLength(REQUEST_METHODS)}
         </span>
         <ArrowDropDownIcon />
         {isOpenFilterMenu === "methods" && (
           <FilterMenuBox>
-            {methods.map((method) => (
+            {REQUEST_METHODS.map((method) => (
               <MenuItem key={method}>
                 <CheckBoxStyled
                   type="checkbox"
@@ -70,16 +69,17 @@ function FilterBox({
         ref={targetEl}
         onClick={(e) => {
           e.stopPropagation();
-          onOpenFilterMenu("meterials");
+          onOpenFilterMenu("materials");
         }}
       >
         <span>
-          재료{checkedLength(meterials) > 0 && `(${checkedLength(meterials)})`}
+          재료
+          {checkedLength(REQUEST_MATERIALS)}
         </span>
         <ArrowDropDownIcon />
-        {isOpenFilterMenu === "meterials" && (
+        {isOpenFilterMenu === "materials" && (
           <FilterMenuBox>
-            {meterials.map((material) => (
+            {REQUEST_MATERIALS.map((material) => (
               <MenuItem key={material}>
                 <CheckBoxStyled
                   type="checkbox"

@@ -7,7 +7,7 @@ import RequestTitle from "./RequestTitle";
 import NoMatchingResult from "./NoMathcingResult";
 import styled from "styled-components";
 
-function RequestContents(): ReactElement | null {
+function RequestContents(): ReactElement {
   const { onChange, requestList, onReset, selectedFilters } =
     useFilterQuoteRequest();
 

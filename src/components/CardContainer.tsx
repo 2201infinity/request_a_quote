@@ -3,39 +3,16 @@ import { Card } from './Card';
 import media from 'styles/media';
 import { RequestFilterTypes } from 'types/request';
 
-type CardContainerProps = {
+interface CardContainerProps {
   requestList: RequestFilterTypes[];
-};
+}
 
 export const CardContainer = ({ requestList }: CardContainerProps) => {
   return (
     <GridContainer>
-      {requestList.map((data) => {
-        const {
-          id,
-          title,
-          client,
-          due,
-          count,
-          amount,
-          method,
-          material,
-          status,
-        } = data;
-        return (
-          <Card
-            key={id}
-            title={title}
-            client={client}
-            due={due}
-            count={count}
-            amount={amount}
-            method={method.join(', ')}
-            material={material.join(', ')}
-            status={status}
-          />
-        );
-      })}
+      {requestList.map((data) => (
+        <Card key={data.id} data={data} />
+      ))}
     </GridContainer>
   );
 };

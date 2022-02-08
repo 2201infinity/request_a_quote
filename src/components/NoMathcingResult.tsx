@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 function NoMatchingResult() {
   return (
@@ -10,7 +10,6 @@ function NoMatchingResult() {
   );
 }
 
-export default NoMatchingResult;
 const ResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,3 +25,5 @@ const NothingMatch = styled.div`
 `;
 
 const Notice = styled.div``;
+
+export default NoMatchingResult;
