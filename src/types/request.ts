@@ -12,6 +12,10 @@ export type Request = {
   status: string;
 };
 
+export type RequestFilterTypes = {
+  filters: string[];
+} & Request;
+
 export type State = {
   loading: boolean;
   data?: Request[];
