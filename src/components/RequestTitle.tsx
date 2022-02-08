@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
+import media from "styles/media";
 
 function RequestTitle(): ReactElement {
   return (
@@ -14,6 +15,9 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  ${media.small} {
+    margin-top: 24px;
+  }
 `;
 
 const Title = styled.span`

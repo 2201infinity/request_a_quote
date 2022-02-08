@@ -2,6 +2,7 @@ import { ArrowDropDown24Icon, Refresh24Icon } from "assets";
 import useOutSideClick from "hooks/useOutSideClick";
 import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
+import media from "styles/media";
 
 type FilterBoxProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -106,6 +107,9 @@ const FilterBoxContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 32px 0;
+  ${media.medium} {
+    margin-bottom: 20px;
+  }
 `;
 
 const BoxStyled = styled.div`

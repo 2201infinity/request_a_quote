@@ -5,6 +5,7 @@ import ToggleBox from "./ToggleBox";
 import FilterBox from "./FilterBox";
 import RequestTitle from "./RequestTitle";
 import NoMatchingResult from "./NoMathcingResult";
+import styled from "styled-components";
 
 function RequestContents(): ReactElement | null {
   const {
@@ -19,12 +20,14 @@ function RequestContents(): ReactElement | null {
   return (
     <>
       <RequestTitle />
-      <FilterBox
-        onChange={onChange}
-        onReset={onReset}
-        selectedFilters={selectedFilters}
-      />
-      <ToggleBox onToggle={onToggle} checked={isChecked} />
+      <FilterBlock>
+        <FilterBox
+          onChange={onChange}
+          onReset={onReset}
+          selectedFilters={selectedFilters}
+        />
+        <ToggleBox onToggle={onToggle} checked={isChecked} />
+      </FilterBlock>
       {!requestList || requestList.length === 0 ? (
         <NoMatchingResult />
       ) : (
@@ -33,5 +36,12 @@ function RequestContents(): ReactElement | null {
     </>
   );
 }
+
+const FilterBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
 
 export default RequestContents;

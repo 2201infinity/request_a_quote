@@ -33,6 +33,7 @@ const MainLayout = styled.main`
 
   ${media.medium} {
     width: ${Breakpoints.small}px;
+    padding: 20px;
   }
 `;
 
