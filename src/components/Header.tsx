@@ -1,27 +1,50 @@
-import React, { ReactElement } from "react";
+import React, { useState, ReactElement } from "react";
 import styled from "styled-components";
 import { Logo } from "assets/images";
 import { CompanyIcon } from "assets/images";
 import { MenuIcon } from "assets/images";
 import media from "styles/media";
+import Sidebar from "components/Sidebar";
+import Breakpoints from "styles/breakpoints";
+import useWindowWidth from "hooks/useWindowWidth";
 
-function Header(): ReactElement {
-  const onHandleSidebar = (event: React.MouseEvent<HTMLButtonElement>) => {};
+interface HeaderProps {
+  companyName?: string;
+}
+
+function Header({ companyName = "A 가공 업체" }: HeaderProps): ReactElement {
+  const [isMenuShowing, setMenuShowing] = useState<boolean>(false);
+  const { innerWidth } = useWindowWidth();
+  const isMobile = innerWidth < Breakpoints.medium;
+
+  console.log(isMobile);
+
+  const onHandleSidebar = () => {
+    setMenuShowing((prev) => !prev);
+  };
 
   return (
-    <HeaderContainer>
-      <Hamburger onClick={onHandleSidebar}>
-        <img src={MenuIcon} alt="menu-button" />
-      </Hamburger>
-      <LogoIcon src={Logo} alt="logo" />
-      <ProfileBox>
-        <img src={CompanyIcon} alt="company" />
-        <NameText>A 가공 업체</NameText>
-        <div>
-          <p>로그아웃</p>
-        </div>
-      </ProfileBox>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <Hamburger onClick={onHandleSidebar}>
+          <img src={MenuIcon} alt="menu-button" />
+        </Hamburger>
+        <LogoIcon src={Logo} alt="logo" />
+        <ProfileBox>
+          <img src={CompanyIcon} alt="company" />
+          <NameText>{companyName}</NameText>
+          <div>
+            <p>로그아웃</p>
+          </div>
+        </ProfileBox>
+      </HeaderContainer>
+      {isMobile && (
+        <Sidebar
+          onHandleSidebar={onHandleSidebar}
+          isMenuShowing={isMenuShowing}
+        />
+      )}
+    </>
   );
 }
 
@@ -49,7 +72,7 @@ const Hamburger = styled.button`
   display: none;
   margin-right: 19px;
   padding: 0;
-
+  cursor: pointer;
   img {
     height: 12px;
   }
