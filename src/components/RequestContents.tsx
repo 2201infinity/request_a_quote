@@ -15,17 +15,20 @@ function RequestContents(): ReactElement | null {
     isChecked,
   } = useFilterQuoteRequest();
 
-  if (!requestList) return <NoMatchingResult />;
-
   return (
     <>
+      {console.log(requestList)}
       <FilterBox
         onChange={onChange}
         onReset={onReset}
         selectedFilters={selectedFilters}
       />
       <ToggleBox onToggle={onToggle} checked={isChecked} />
-      <CardContainer requestList={requestList} />
+      {!requestList || requestList.length === 0 ? (
+        <NoMatchingResult />
+      ) : (
+        <CardContainer requestList={requestList} />
+      )}
     </>
   );
 }

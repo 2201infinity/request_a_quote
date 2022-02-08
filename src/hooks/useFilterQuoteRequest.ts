@@ -35,8 +35,6 @@ export default function useFilterQuoteRequest(): ReturnTypes {
       ? selectedFilters.filter((filter) => filter !== name)
       : [...selectedFilters, name];
     setSelectedFilters(selectedFilterList);
-    console.log(selectedFilters);
-    // console.log(selectedFilterList);
 
     setRequestList(
       originalData.current.filter((request) =>
