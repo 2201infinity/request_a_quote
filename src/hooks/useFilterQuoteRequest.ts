@@ -7,6 +7,7 @@ type ReturnTypes = {
   requestList?: RequestFilterTypes[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
+  selectedFilters: string[];
 };
 
 export default function useFilterQuoteRequest(): ReturnTypes {
@@ -51,5 +52,6 @@ export default function useFilterQuoteRequest(): ReturnTypes {
     requestList,
     onChange,
     onReset,
+    selectedFilters,
   };
 }
