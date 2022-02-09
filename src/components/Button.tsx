@@ -16,7 +16,7 @@ interface ButtonProps
 export const Button = ({
   variant,
   width,
-  height,
+  height = '32px',
   children,
   ...rest
 }: ButtonProps): JSX.Element => {
