@@ -47,8 +47,8 @@ const SidebarContainer = styled.nav<{ visible: boolean }>`
       : css`
           visibility: hidden;
         `}
-  transition: all 0.5s;
-  transform: translateX(${({ visible }) => (visible ? 0 : -50)}vw);
+  transition: all 0.5s ease-in-out;
+  transform: translateX(${({ visible }) => (visible ? 0 : -75)}vw);
   z-index: 999;
   background: ${(props) => props.theme.colors.white};
   img {
