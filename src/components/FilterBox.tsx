@@ -51,14 +51,14 @@ function FilterBox({
           e.stopPropagation();
           onOpenFilterMenu(isCheckedMenu("methods") ? null : "methods");
         }}
-        isActive={isCheckedMenu("methods")}
+        isActive={checkedLength(REQUEST_METHODS) ? true : false}
       >
         <LabelText>
           가공방식
           {checkedLength(REQUEST_METHODS)}
         </LabelText>
 
-        {isCheckedMenu("methods") ? (
+        {checkedLength(REQUEST_METHODS) ? (
           <SelectedArrowDropDownIcon />
         ) : (
           <ArrowDropDownIcon />
@@ -82,7 +82,7 @@ function FilterBox({
       </BoxStyled>
       <BoxStyled
         ref={targetEl}
-        isActive={isCheckedMenu("materials")}
+        isActive={checkedLength(REQUEST_MATERIALS) ? true : false}
         onClick={(e) => {
           e.stopPropagation();
           onOpenFilterMenu(isCheckedMenu("materials") ? null : "materials");
@@ -93,7 +93,7 @@ function FilterBox({
           {checkedLength(REQUEST_MATERIALS)}
         </LabelText>
 
-        {isCheckedMenu("materials") ? (
+        {checkedLength(REQUEST_MATERIALS) ? (
           <SelectedArrowDropDownIcon />
         ) : (
           <ArrowDropDownIcon />
