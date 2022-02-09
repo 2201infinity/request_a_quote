@@ -167,6 +167,7 @@ const BoxStyled = styled.div<{ isActive: boolean }>`
   }
   ${media.medium} {
     margin-right: 12px;
+    padding: 9px 30px 9px 12px;
   }
 `;
 
@@ -175,6 +176,9 @@ const DropDownIconStyled = css`
   top: 50%;
   right: 19px;
   transform: translateY(-50%);
+  ${media.medium} {
+    right: 12px;
+  }
 `;
 
 const ArrowDropDownIcon = styled(ArrowDropDown24Icon)`
