@@ -24,7 +24,7 @@ export const Card = ({ data }: { data: Request }) => {
         재료<Strong>{material.join(", ")}</Strong>
       </Span>
       <ButtonGroup>
-        <Button variant="primary" width="117px">
+        <Button variant="primary" width="108px">
           요청 내역 보기
         </Button>
         <Button variant="secondary" width="76px">
