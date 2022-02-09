@@ -1,18 +1,18 @@
-import React, { useState, ReactElement } from 'react';
-import styled from 'styled-components';
-import { Logo } from 'assets/images';
-import { CompanyIcon } from 'assets/images';
-import { MenuIcon } from 'assets/images';
-import media from 'styles/media';
-import Sidebar from 'components/Sidebar';
-import Breakpoints from 'styles/breakpoints';
-import useWindowWidth from 'hooks/useWindowWidth';
+import React, { useState, ReactElement } from "react";
+import styled from "styled-components";
+import { Logo } from "assets/images";
+import { CompanyIcon } from "assets/images";
+import { MenuIcon } from "assets/images";
+import media from "styles/media";
+import Sidebar from "components/Sidebar";
+import Breakpoints from "styles/breakpoints";
+import useWindowWidth from "hooks/useWindowWidth";
 
 interface HeaderProps {
   companyName?: string;
 }
 
-function Header({ companyName = 'A 가공 업체' }: HeaderProps): ReactElement {
+function Header({ companyName = "A 가공 업체" }: HeaderProps): ReactElement {
   const [isMenuShowing, setMenuShowing] = useState<boolean>(false);
   const { innerWidth } = useWindowWidth();
   const isMobile = innerWidth < Breakpoints.medium;
@@ -32,7 +32,7 @@ function Header({ companyName = 'A 가공 업체' }: HeaderProps): ReactElement 
           <img src={CompanyIcon} alt="company" />
           <NameText>{companyName}</NameText>
           <div>
-            <p>로그아웃</p>
+            <LogoutText>로그아웃</LogoutText>
           </div>
         </ProfileBox>
       </HeaderContainer>
@@ -82,6 +82,7 @@ const Hamburger = styled.button`
 
 const LogoIcon = styled.img`
   height: 20px;
+  cursor: pointer;
 
   ${media.medium} {
     height: 12px;
@@ -115,6 +116,10 @@ const ProfileBox = styled.div`
 
 const NameText = styled.p`
   font-weight: 500;
+`;
+
+const LogoutText = styled.p`
+  cursor: pointer;
 `;
 
 export default Header;
