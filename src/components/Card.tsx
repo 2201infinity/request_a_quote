@@ -24,7 +24,9 @@ export const Card = ({ data }: { data: Request }) => {
         재료<Strong>{material.join(", ")}</Strong>
       </Span>
       <ButtonGroup>
-        <Button variant="primary">요청 내역 보기</Button>
+        <Button variant="primary" width="117px">
+          요청 내역 보기
+        </Button>
         <Button variant="secondary" width="76px">
           채팅하기
         </Button>
@@ -56,6 +58,9 @@ const Title = styled.h4`
 const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
+  button {
+    padding: 0;
+  }
 `;
 
 const Span = styled.span`
